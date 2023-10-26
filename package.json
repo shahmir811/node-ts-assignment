@@ -1,21 +1,31 @@
 {
-  "name": "ts-assignment",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest",
-    "build": "tsc",
-    "start": "node dist/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/jest": "^29.5.6",
-    "@types/node": "^20.8.9",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.1",
-    "typescript": "^5.2.2"
-  }
+	"name": "ts-assignment",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"copy-json": "copyfiles -u 1 src/*.json dist/",
+		"postbuild": "npm run copy-json",
+		"test": "jest",
+		"build": "tsc",
+		"start": "node dist/index.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"jest": {
+		"preset": "ts-jest",
+		"testEnvironment": "node",
+		"testMatch": [
+			"**/__tests__/**/*.ts"
+		]
+	},
+	"devDependencies": {
+		"@types/jest": "^29.5.6",
+		"@types/node": "^20.8.9",
+		"copyfiles": "^2.4.1",
+		"jest": "^29.7.0",
+		"ts-jest": "^29.1.1",
+		"typescript": "^5.2.2"
+	}
 }
