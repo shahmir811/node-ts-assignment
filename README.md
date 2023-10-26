@@ -11,7 +11,7 @@ This project is a simple stock management system built with Node.js and TypeScri
 
 ## Project Structure
 
-\```
+```
 node-ts-assignment/
 |-- src/
 | |-- index.ts // main file
@@ -23,27 +23,27 @@ node-ts-assignment/
 |-- package.json
 |-- tsconfig.json
 |-- README.md
-\```
+```
 
 ## Installation
 
 1. Clone the repository:
 
-   \```bash
+   ```
    git clone https://github.com/shahmir811/node-ts-assignment.git
-   \```
+   ```
 
 2. Navigate to the project directory:
 
-   \```bash
+   ```
    cd node-ts-assignment
-   \```
+   ```
 
 3. Install dependencies:
 
-   \```bash
+   ```
    npm install
-   \```
+   ```
 
 ## Usage
 
@@ -51,9 +51,9 @@ node-ts-assignment/
 
 To compile the TypeScript files, run:
 
-\```bash
+```
 npm run build
-\```
+```
 
 This will generate compiled JavaScript files in the `dist/` directory.
 
@@ -61,17 +61,17 @@ This will generate compiled JavaScript files in the `dist/` directory.
 
 To run the program, execute:
 
-\```bash
+```
 npm start
-\```
+```
 
 ### Run Tests
 
 To run the tests, execute:
 
-\```bash
+```
 npm test
-\```
+```
 
 ## Functionality
 
