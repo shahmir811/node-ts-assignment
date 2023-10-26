@@ -1,4 +1,4 @@
-# Stock Management System
+# Node Typescript Assignment
 
 ## Overview
 
@@ -14,11 +14,14 @@ This project is a simple stock management system built with Node.js and TypeScri
 ```
 node-ts-assignment/
 |-- src/
-| |-- index.ts // main file
-| |-- stock.json
-| |-- transactions.json
-|-- **tests**/
-| |-- index.test.ts // test file
+|   |-- fileReader.ts  // File reading
+|   |-- index.d.ts // Containing types/interfaces
+|   |-- main.ts  // Entry point
+|   |-- stock.json
+|   |-- stockManager.ts  // Stock management logic
+|   |-- transactions.json
+|-- __tests__/
+|   |-- stockManager.test.ts  // Test for stockManager
 |-- node_modules/
 |-- package.json
 |-- tsconfig.json
