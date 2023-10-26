@@ -22,6 +22,7 @@ node-ts-assignment/
 |   |-- transactions.json
 |-- __tests__/
 |   |-- stockManager.test.ts  // Test for stockManager
+|   |-- fileReader.test.ts  // Test for fileReader
 |-- node_modules/
 |-- package.json
 |-- tsconfig.json
@@ -78,31 +79,24 @@ The project uses [Jest](https://jestjs.io/) for unit testing. The tests are focu
 
 ### Test Scenarios
 
-1. **Correct Stock Level for a Given SKU**:  
-   This test checks if the function correctly calculates the stock level for a SKU that exists in both `stock.json` and `transactions.json`. The test uses mock data to simulate an initial stock level of 10, an incoming transaction of 5 units, and an outgoing transaction of 2 units. The expected final stock level is 13.
+#### stockManager.ts
 
-   ```typescript
-   it('should return the correct stock level for a given SKU', async () => {
-   	// ...test implementation
-   });
-   ```
+1. **Correct Stock Level for a Given SKU**:  
+   Checks if the function correctly calculates the stock level for a SKU that exists in both `stock.json` and `transactions.json`.
 
 2. **Non-Existent SKU**:  
-   This test checks if the function throws an error when asked for a SKU that doesn't exist in either `stock.json` or `transactions.json`.
-
-   ```typescript
-   it('should throw an error for a non-existent SKU', async () => {
-   	// ...test implementation
-   });
-   ```
+   Checks if the function throws an error for a SKU that doesn't exist in either `stock.json` or `transactions.json`.
 
 3. **SKUs Not Present in `stock.json`**:  
-   This test checks if the function assumes a starting quantity of 0 for SKUs that are not present in `stock.json` but have transactions in `transactions.json`.
-   ```typescript
-   it('should assume a starting quantity of 0 for SKUs not present in stock.json', async () => {
-   	// ...test implementation
-   });
-   ```
+   Checks if the function assumes a starting quantity of 0 for SKUs not present in `stock.json`.
+
+#### fileReader.ts
+
+1. **Read and Parse a JSON File**:  
+   Checks if `readJSONFile` can correctly read and parse a JSON file.
+
+2. **File Does Not Exist**:  
+   Checks if `readJSONFile` throws an error when trying to read a non-existent file.
 
 ### Running Tests
 
@@ -111,3 +105,15 @@ To run the tests, execute the following command:
 ```bash
 npm run test
 ```
+
+## Test Coverage
+
+The project aims for high test coverage to ensure code quality. The coverage metrics are as follows:
+
+- **Statements:** The percentage of statements that are covered by tests.
+- **Branches:** The percentage of branches (like if or switch statements) that are covered.
+- **Functions:** The percentage of functions that are covered.
+- **Lines:** The percentage of lines that are covered.
+- **Uncovered Line #s:** The line numbers in your code that are not covered by any tests.
+
+To view the coverage report, you can open the `coverage/lcov-report/index.html` file in a web browser after running the tests.
