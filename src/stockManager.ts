@@ -1,24 +1,31 @@
 import { readJSONFile } from './fileReader';
 import { Stock, Transaction } from './index.d';
 
-export const getCurrentStock = async (sku: string): Promise<{ sku: string; qty: number }> => {
-	const stocks: Stock[] = await readJSONFile('stock.json');
+export const getCurrentStock = async (sku: string): Promise<Stock> => {
+	const initialStocks: Stock[] = await readJSONFile('stock.json');
+
 	const transactions: Transaction[] = await readJSONFile('transactions.json');
 
-	let stockQty = 0;
-	const stockItem = stocks.find(item => item.sku === sku);
-	if (stockItem) {
-		stockQty = stockItem.qty;
+	// Find initial stock for the given SKU
+	const initialStock = initialStocks.find(stock => stock.sku === sku)?.qty || 0;
+
+	// Calculate current stock based on transactions
+	const currentStock = transactions.reduce((acc, transaction) => {
+		if (transaction.sku === sku) {
+			if (transaction.type === 'INCOMING') {
+				return acc + transaction.qty;
+			} else if (transaction.type === 'OUTGOING') {
+				return acc - transaction.qty;
+			} else {
+				throw new Error(`Invalid transaction type: ${transaction.type}`);
+			}
+		}
+		return acc;
+	}, initialStock);
+
+	if (currentStock < 0) {
+		throw new Error(`Stock level for SKU ${sku} is negative`);
 	}
 
-	const skuTransactions = transactions.filter(transaction => transaction.sku === sku);
-	if (!stockItem && skuTransactions.length === 0) {
-		throw new Error(`SKU ${sku} does not exist`);
-	}
-
-	for (const transaction of skuTransactions) {
-		stockQty += (transaction.type === 'IN' ? 1 : -1) * transaction.qty;
-	}
-
-	return { sku, qty: stockQty };
+	return { sku, qty: currentStock };
 };
